@@ -1,0 +1,95 @@
+---
+title: Regression og kunstig intelligens
+format:
+    html: default
+    pdf: default
+---
+
+Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi
+skal i denne opgave skabe en meget simpel kunstig intelligens, der kan
+forudsige strømforbruget i Danmark.
+
+I det vedhæftede datasæt ses strømforbrug (målt i MWh) per time for to
+hverdage i Danmark. Vi ønsker at bruge datasættet til at forudsige
+elforbruget dagen efter, så elselskaberne bedre kan planlægge
+energiproduktionen og derved mindske udgifterne. Vi deler først
+datasættet i to dele:
+
+**Træningsdata**: Det datasæt, som den kunstige intelligens skal bruge
+til at lære at løse problemet.
+
+**Testdata**: Det datasæt, vi bruger til at kontrollere, om den kunstige
+intelligens kan løse problemet nogenlunde fornuftigt.
+
+Vi har ikke forventning om, at elforbruget følger en bestemt
+funktionstype, men forventer, at forbruget kan approksimeres af et
+polynomium af passende, men ikke alt for høj grad. Vi benytter data for
+det første døgn (16/9) som træningsdata.
+
+### Opgave 1
+
+Lav et punktplot af datasættet for det første døgn.
+
+### Opgave 2
+
+Lav polynomiel regression på træningsdatasættet. Afprøv forskellige
+grader af polynomiet og vurder, hvilken grad polynomiet (mindst) skal
+have for at beskrive datasættet fornuftigt. For høje grader ser output
+lidt mærkeligt ud i Maple, men de er heller ikke specielt
+interessante.
+
+Den sidste døgn af datasættet (17/9) betragtes som testdata, der altså
+er til at teste om den kunstige intelligens er god nok til at forudsige
+elforbruget.
+
+### Opgave 3
+
+Det ses af testdatasættet, at elforbruget den følgende dag kl. 12 er
+4473 MWh.
+
+Benyt den kunstige intelligens i form af den forskrift for et
+polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
+bestem modellens afvigelse fra det observerede.
+
+Tillykke, du har nu designet et stykke kunstig intelligens, der kan
+forudsige elforbruget i Danmark!
+
+Bemærk -- modellen bestemmes vha. træningsdatasættet, men det afgørende
+er, om modellen kan forudsige resultaterne i testdatasættet rimeligt
+godt, og dermed at det måske kan forudsige andre dage også.
+
+### Opgave 4
+
+Som mål for, hvor god den kunstige intelligens er til at forudsige,
+kan man udregne residualkvadratsummen for testdatasættet.
+
+Formlen er (SSE står for square-sum of errors):
+
+$$
+\text{SSE} = \sum_{i=1}^n (y_i - f(x_i))^2
+$$
+
+Udregn residualkvadratsummen for din model anvendt på testdatasættet.
+
+Udregn desuden residualkvadratsummen for tilsvarende modeller blot med
+andre grader af polynomiet. Hvilke grader er mulige?
+
+Undersøg, hvilken grad der til netop dette testdatasæt giver den
+bedste forudsigelse. Er det samme grad, som den model du valgte i
+opgave 2?
+
+Undersøg og forklar, hvad der sker med SSE, når graden bliver (for)
+stor.
+
+Igen er det vigtigt at huske, at modellen laves vha. træningsdatasættet,
+men den afprøves på testdatasættet.
+
+## Hvad er anderledes end sædvanlige regressionsopgaver
+
+I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske
+overvejelser bag, hvilken model, der beskriver datasættet: lineær,
+eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig.
+Den er blot et middel til forudsigelsen af en talværdi.
+
+Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige
+regressionsopgaver optræder kun ét datasæt, der svarer til træningsdata.
