@@ -4,64 +4,55 @@ format:
     html: default
     pdf: default
 ---
+Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker i denne opgave at skabe en meget simpel kunstig intelligens, der kan forudsige strømforbruget i morgen i Danmark.
 
-Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi
-skal i denne opgave skabe en meget simpel kunstig intelligens, der kan
-forudsige strømforbruget i Danmark.
+I dette datasæt (LINK til datasæt mangler) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
 
-I det vedhæftede datasæt ses strømforbrug (målt i MWh) per time for to
-hverdage i Danmark. Vi ønsker at bruge datasættet til at forudsige
-elforbruget dagen efter, så elselskaberne bedre kan planlægge
-energiproduktionen og derved mindske udgifterne. Vi deler først
-datasættet i to dele:
-
-**Træningsdata**: Det datasæt, som den kunstige intelligens skal bruge
-til at lære at løse problemet.
-
-**Testdata**: Det datasæt, vi bruger til at kontrollere, om den kunstige
-intelligens kan løse problemet nogenlunde fornuftigt.
-
-Vi har ikke forventning om, at elforbruget følger en bestemt
-funktionstype, men forventer, at forbruget kan approksimeres af et
-polynomium af passende, men ikke alt for høj grad. Vi benytter data for
-det første døgn (16/9) som træningsdata.
+Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel.
 
 ### Opgave 1
-
-Lav et punktplot af datasættet for det første døgn.
+- Lav et punktplot af datasættet for de to døgn med 0-24 på x-aksen og forbruget på y-aksen.
+- Overvej, hvilken tendens du ser i punktplottet, og dermed hvordan en fornuftig model kunne se ud.
 
 ### Opgave 2
+- Lav lineær regression på datasættet.
+- Lav desuden polynomiel regression med polynomier af grader fra 2 til 20.
+- Hvilken regression vil du umiddelbart vurdere er bedst til vores formål? 
 
-Lav polynomiel regression på træningsdatasættet. Afprøv forskellige
-grader af polynomiet og vurder, hvilken grad polynomiet (mindst) skal
-have for at beskrive datasættet fornuftigt. For høje grader ser output
-lidt mærkeligt ud i Maple, men de er heller ikke specielt
-interessante.
+Da vi ikke kender elforbruget i morgen, kan vi ikke sige, hvilken model der reelt er bedst. Det ved vi først, når i morgen er gået, og så er det jo for sent til vores formål.
 
-Den sidste døgn af datasættet (17/9) betragtes som testdata, der altså
-er til at teste om den kunstige intelligens er god nok til at forudsige
-elforbruget.
+Udfordringen er, at regressionen passer bedre til punkterne, når man bruger en højere grad, men at det ikke nødvendigvis derved kommer til at passe bedre til fremtidens forbrug. En lineær model passer sikkert meget dårligt, men laver heller ikke nogle vilde udsving mellem punkterne, hvor et polynomium af højere grad passer bedre til de kendte punkter, men kan svinge mere mellem punkterne, og dermed risikerer at passe ringere til fremtiden. Så det optimale er nok et polynomium, der rimeligt godt passer til kendte data, men ikke svinger for meget til at kunne passe på fremtidige data. Man taler om, at man ikke må overfitte sine data ved at bruge for høj en grad.
+
+Så vi må gøre noget andet end blot at lave regression på alle de kendte data for at skaffe en brugbar model.
+
+Ideen er, at vi deler datasættet i to dele.
+
+
+**Træningsdata**: Den del som den kunstige intelligens skal bruge til at opstille modellen.
+
+**Testdata**: Den del som den kunstige intelligens skal bruge til vurdere, hvor god modelen er til at forudsige.
+
+Vi vil bruge data for den første dag som træningsdata og data fra den anden dag som testdata.
 
 ### Opgave 3
+- Vælg en grad mellem 3 og 10, og lav polynomiel regression på træningsdata (den første dag). 
 
-Det ses af testdatasættet, at elforbruget den følgende dag kl. 12 er
-4473 MWh.
-
-Benyt den kunstige intelligens i form af den forskrift for et
-polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
-bestem modellens afvigelse fra det observerede.
-
-Tillykke, du har nu designet et stykke kunstig intelligens, der kan
-forudsige elforbruget i Danmark!
-
-Bemærk -- modellen bestemmes vha. træningsdatasættet, men det afgørende
-er, om modellen kan forudsige resultaterne i testdatasættet rimeligt
-godt, og dermed at det måske kan forudsige andre dage også.
+Hvis I er flere, så vælg gerne forskellige grader, så I efterfølgende kan sammenligne resultater. Hvis du er alene eller I ikke er så mange, så gentag opgave 3-5 for flere forskellige grader.
 
 ### Opgave 4
+Det ses af testdata, at elforbruget på den anden dag kl. 12 er 5256 MWh.
 
-Som mål for, hvor god den kunstige intelligens er til at forudsige,
-kan man udregne residualkvadratsummen for testdatasættet.
+- Benyt den kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
+bestem modellens afvigelse fra det observerede.
+- Sammenlign resultaterne for forskellige modeller fra opgave 3.
+
+Vælg så den model, der gav den mindste afvigelse. Tillykke, du har nu designet en meget simpel kunstig intelligens, der kan forudsige elforbruget i Danmark!
+
+Bemærk -- modellen opstilles vha. træningsdata, men  vurderes hva. testdata. Hvis modellen kan forudsige testdata rimeligt, håber vi, at den dermed også kan forudsige fremtidige dage rimeligt.
+
+Det er nok klart, at det ikke er fornuftigt kun at se på afvigelsen kl. 12, men i stedet at se på afvigelserne for hele døgnet.
+
+Som mål for, hvor god den kunstige intelligens er til at forudsige, vil vi benytte residualkvadratsummen for testdatasættet, som du allerede kender fra lineær regression.
 
 Formlen er (SSE står for square-sum of errors):
 
@@ -69,27 +60,50 @@ $$
 \text{SSE} = \sum_{i=1}^n (y_i - f(x_i))^2
 $$
 
-Udregn residualkvadratsummen for din model anvendt på testdatasættet.
+### Opgave 5
+- Udregn SSE for din model fra opgave 3 anvendt på testdatasættet.
+- Sammenlign SSE for modeller med forskellige grader, og vælg den model, der giver mindst SSE som bedst.
+- Undersøg og forklar, hvad der sker med SSE, når graden bliver (for) stor.
 
-Udregn desuden residualkvadratsummen for tilsvarende modeller blot med
-andre grader af polynomiet. Hvilke grader er mulige?
+Igen er det vigtigt at huske, at modellen laves vha. træningsdata, men den vurderes vha. testdata.
 
-Undersøg, hvilken grad der til netop dette testdatasæt giver den
-bedste forudsigelse. Er det samme grad, som den model du valgte i
-opgave 2?
+## Hvad er anderledes end sædvanlige regressionsopgaver?
 
-Undersøg og forklar, hvad der sker med SSE, når graden bliver (for)
-stor.
+I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske overvejelser bag, hvilken model, der beskriver datasættet: lineær,
+eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig. Den er blot et middel til forudsigelsen af en talværdi.
 
-Igen er det vigtigt at huske, at modellen laves vha. træningsdatasættet,
-men den afprøves på testdatasættet.
+Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige regressionsopgaver optræder kun ét datasæt, der svarer til træningsdata.
 
-## Hvad er anderledes end sædvanlige regressionsopgaver
 
-I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske
-overvejelser bag, hvilken model, der beskriver datasættet: lineær,
-eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig.
-Den er blot et middel til forudsigelsen af en talværdi.
+## Et større træningsdatasæt
+Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datasættet (LINK til datasæt mangler) ses strømforbrug per time for tre uger for hele Danmark på fanen "21 dage".
 
-Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige
-regressionsopgaver optræder kun ét datasæt, der svarer til træningsdata.
+### Opgave 6
+- Anvend de første 20 dage som træningsdata til at opstille en model vha. et 6. grads polynomium.
+- Vurder modellen i forhold til testdata for den sidste dag ved beregning af SSE.
+- Gør det samme for andre grader og vælg den model med mindst SSE som bedst.
+
+Vi har lavet en side, der kan lave disse beregninger. (LINK til side og selve siden mangler). På den er datasættet allerede indlæst og det er forvalgt, at de første 20 dage er træningsdata og den sidste dag er testdata.
+
+### Opgave 7
+- Brug siden til at beregne SSE for alle grader fra 2 til 100.
+- Vælg derefter modellen med lavest SSE som bedst.
+
+Man kan også vælge at lade en større del af data være testdata end blot den ene dag.
+
+### Opgave 8
+- Brug siden med en anden inddeling end 20 dage til træningsdata og 1 dag til testdata, f.eks. 18 dage til træning og 3 dage til test.
+
+
+## Lad os faktisk prøve at forudsige forbruget i morgen
+Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I morgen. Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug "i morgen".
+
+### Opgave 9
+- Indstil siden til den bedste model du har fundet i opgave 6-8.
+- Se hvordan modellen passer for elforbruget for "i morgen".
+
+
+## knn regression
+Her mangler evt. et afsnit om kNN regression på samme data med tilhørende side til beregning.
+
+
