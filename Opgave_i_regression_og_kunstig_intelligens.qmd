@@ -86,7 +86,7 @@ Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datas�
 Vi har lavet en side, der kan lave disse beregninger. (LINK til side og selve siden mangler). På den er datasættet allerede indlæst og det er forvalgt, at de første 20 dage er træningsdata og den sidste dag er testdata.
 
 ### Opgave 7
-- Brug siden til at beregne SSE for alle grader fra 2 til 100.
+- Brug siden til at beregne SSE for alle grader fra 2 til 20.
 - Vælg derefter modellen med lavest SSE som bedst.
 
 Man kan også vælge at lade en større del af data være testdata end blot den ene dag.
