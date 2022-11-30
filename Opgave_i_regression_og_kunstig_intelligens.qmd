@@ -103,6 +103,10 @@ Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I 
 - Se hvordan modellen passer for elforbruget for "i morgen".
 
 
+## Et andet eksempel, hvor x-værdierne er kontinuerte
+Det er lidt specielt med elbrugdata, at x-værdierne er diskrete, og at der er tale om tidsrækkedata.
+Jeg overvejer desuden at have et eksempel, hvor dette ikke er tilfældet, men har ikke fundet på noget endnu.
+
 ## knn regression
 Her mangler evt. et afsnit om kNN regression på samme data med tilhørende side til beregning.
 
