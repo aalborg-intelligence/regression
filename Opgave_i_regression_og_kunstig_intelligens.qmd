@@ -6,7 +6,7 @@ format:
 ---
 Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker i denne opgave at skabe en meget simpel kunstig intelligens, der kan forudsige strømforbruget i morgen i Danmark.
 
-I dette datasæt (LINK til datasæt mangler) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
+I [dette datasæt](./ElforbrugDKokt2022.xlsx) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
 
 Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel.
 
