@@ -1,7 +1,8 @@
 ---
 title: Regression og kunstig intelligens
 format:
-    html: default
+    html:
+      embed-resources: true
     pdf: default
 ---
 Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker i denne opgave at skabe en meget simpel kunstig intelligens, der kan forudsige strømforbruget i morgen i Danmark.
