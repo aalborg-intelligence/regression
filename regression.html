@@ -2560,7 +2560,7 @@ vertical-align: -.125em;
 
 <p>Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker i denne opgave at skabe en meget simpel kunstig intelligens, der kan forudsige strømforbruget i morgen i Danmark.</p>
 <p>I <a href="./ElforbrugDKokt2022.xlsx">dette datasæt</a> ses strømforbrug per time for to hverdage for hele Danmark på fanen “2 dage”. Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen.</p>
-<p>Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel.</p>
+<p>Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel. Det er, indrømmet, nok en lidt naiv tanke, at elforbruget kan forudsiges alene ud fra én variabel, tid på dagen, der skulle nok flere variable i spil som f.eks. temperatur, nedbør, sol og vind, men vi holder os til den ene forklarende variabel i denne omgang.</p>
 <section id="opgave-1" class="level3">
 <h3 class="anchored" data-anchor-id="opgave-1">Opgave 1</h3>
 <ul>
@@ -2577,10 +2577,9 @@ vertical-align: -.125em;
 </ul>
 <p>Da vi ikke kender elforbruget i morgen, kan vi ikke sige, hvilken model der reelt er bedst. Det ved vi først, når i morgen er gået, og så er det jo for sent til vores formål.</p>
 <p>Udfordringen er, at regressionen passer bedre til punkterne, når man bruger en højere grad, men at det ikke nødvendigvis derved kommer til at passe bedre til fremtidens forbrug. En lineær model passer sikkert meget dårligt, men laver heller ikke nogle vilde udsving mellem punkterne, hvor et polynomium af højere grad passer bedre til de kendte punkter, men kan svinge mere mellem punkterne, og dermed risikerer at passe ringere til fremtiden. Så det optimale er nok et polynomium, der rimeligt godt passer til kendte data, men ikke svinger for meget til at kunne passe på fremtidige data. Man taler om, at man ikke må overfitte sine data ved at bruge for høj en grad.</p>
-<p>Så vi må gøre noget andet end blot at lave regression på alle de kendte data for at skaffe en brugbar model.</p>
-<p>Ideen er, at vi deler datasættet i to dele.</p>
+<p>Så vi må gøre noget andet end blot at lave regression på alle de kendte data for at skaffe en brugbar model. Ideen er, at vi deler datasættet i to dele.</p>
 <p><strong>Træningsdata</strong>: Den del som den kunstige intelligens skal bruge til at opstille modellen.</p>
-<p><strong>Testdata</strong>: Den del som den kunstige intelligens skal bruge til vurdere, hvor god modelen er til at forudsige.</p>
+<p><strong>Testdata</strong>: Den del som den kunstige intelligens skal bruge til at vurdere, hvor god modelen er til at forudsige.</p>
 <p>Vi vil bruge data for den første dag som træningsdata og data fra den anden dag som testdata.</p>
 </section>
 <section id="opgave-3" class="level3">
@@ -2594,7 +2593,7 @@ vertical-align: -.125em;
 <h3 class="anchored" data-anchor-id="opgave-4">Opgave 4</h3>
 <p>Det ses af testdata, at elforbruget på den anden dag kl. 12 er 5256 MWh.</p>
 <ul>
-<li>Benyt den kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og bestem modellens afvigelse fra det observerede.</li>
+<li>Benyt den (meget simple) kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og bestem modellens afvigelse fra det observerede.</li>
 <li>Sammenlign resultaterne for forskellige modeller fra opgave 3.</li>
 </ul>
 <p>Vælg så den model, der gav den mindste afvigelse. Tillykke, du har nu designet en meget simpel kunstig intelligens, der kan forudsige elforbruget i Danmark!</p>
@@ -2617,18 +2616,17 @@ vertical-align: -.125em;
 </section>
 <section id="hvad-er-anderledes-end-sædvanlige-regressionsopgaver" class="level2">
 <h2 class="anchored" data-anchor-id="hvad-er-anderledes-end-sædvanlige-regressionsopgaver">Hvad er anderledes end sædvanlige regressionsopgaver?</h2>
-<p>I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske overvejelser bag, hvilken model, der beskriver datasættet: lineær, eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig. Den er blot et middel til forudsigelsen af en talværdi.</p>
+<p>I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske overvejelser bag, hvilken model, der beskriver datasættet: lineær, eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig. Den er blot et middel til forudsigelsen af en talværdi, så der ligger ingen teoretisk eller kontekstbaseret forklaring bag den valgte model.</p>
 <p>Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige regressionsopgaver optræder kun ét datasæt, der svarer til træningsdata.</p>
 </section>
 <section id="et-større-træningsdatasæt" class="level2">
 <h2 class="anchored" data-anchor-id="et-større-træningsdatasæt">Et større træningsdatasæt</h2>
-<p>Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datasættet (LINK til datasæt mangler) ses strømforbrug per time for tre uger for hele Danmark på fanen “21 dage”.</p>
+<p>Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datasættet ses strømforbrug per time for tre uger for hele Danmark på fanen “21 dage”.</p>
 <section id="opgave-6" class="level3">
 <h3 class="anchored" data-anchor-id="opgave-6">Opgave 6</h3>
 <ul>
 <li>Anvend de første 20 dage som træningsdata til at opstille en model vha. et 6. grads polynomium.</li>
 <li>Vurder modellen i forhold til testdata for den sidste dag ved beregning af SSE.</li>
-<li>Gør det samme for andre grader og vælg den model med mindst SSE som bedst.</li>
 </ul>
 <p>Vi har lavet en side, der kan lave disse beregninger. (LINK til side og selve siden mangler). På den er datasættet allerede indlæst og det er forvalgt, at de første 20 dage er træningsdata og den sidste dag er testdata.</p>
 </section>
@@ -2649,22 +2647,17 @@ vertical-align: -.125em;
 </section>
 <section id="lad-os-faktisk-prøve-at-forudsige-forbruget-i-morgen" class="level2">
 <h2 class="anchored" data-anchor-id="lad-os-faktisk-prøve-at-forudsige-forbruget-i-morgen">Lad os faktisk prøve at forudsige forbruget i morgen</h2>
-<p>Måske du allerede har bemærket, at den tredje fane i filen med data hedder “I morgen. Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug”i morgen”.</p>
+<p>Måske du allerede har bemærket, at den tredje fane i filen med data hedder “I morgen”. Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug “i morgen”.</p>
 <section id="opgave-9" class="level3">
 <h3 class="anchored" data-anchor-id="opgave-9">Opgave 9</h3>
 <ul>
 <li>Indstil siden til den bedste model du har fundet i opgave 6-8.</li>
 <li>Se hvordan modellen passer for elforbruget for “i morgen”.</li>
 </ul>
+<p>Med dette er du kommet gennem principperne for at lave en simpel kunstig intelligens vha. polynomiel regression. De vigtigste principper handler om opdeling i trænings- og testdata, og i udfordringen med ikke at overfitte til træningsdata.</p>
+<p>I eksemplet er der blot den éne forklarende variabel, som vi typisk arbejder med på gymnasieniveau, men sådanne modeller vil ofte i praksis indeholde flere forklarende variable, hvis de skal være mere præcise. Så de modeller, som eksperterne arbeder med for elforbrug og elpris er helt sikkert både mere komplicerede og mere præcise, end den simple tilgang, som vi har anvendt her.</p>
+<p>Desuden er data i eksemplet med diskrete x-værdier (0, 1, 2 … 23), hvor der er andre sammenhænge kan være kontinuerte data, som giver endnu større risiko for at overfitte, hvis polynomiets grad bliver for stor.</p>
 </section>
-</section>
-<section id="et-andet-eksempel-hvor-x-værdierne-er-kontinuerte" class="level2">
-<h2 class="anchored" data-anchor-id="et-andet-eksempel-hvor-x-værdierne-er-kontinuerte">Et andet eksempel, hvor x-værdierne er kontinuerte</h2>
-<p>Det er lidt specielt med elbrugdata, at x-værdierne er diskrete, og at der er tale om tidsrækkedata. Jeg overvejer desuden at have et eksempel, hvor dette ikke er tilfældet, men har ikke fundet på noget endnu.</p>
-</section>
-<section id="knn-regression" class="level2">
-<h2 class="anchored" data-anchor-id="knn-regression">knn regression</h2>
-<p>Her mangler evt. et afsnit om kNN regression på samme data med tilhørende side til beregning.</p>
 </section>
 
 </main>

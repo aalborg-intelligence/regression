@@ -9,7 +9,7 @@ Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker
 
 I [dette datasæt](./ElforbrugDKokt2022.xlsx) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
 
-Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel.
+Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel. Det er, indrømmet, nok en lidt naiv tanke, at elforbruget kan forudsiges alene ud fra én variabel, tid på dagen, der skulle nok flere variable i spil som f.eks. temperatur, nedbør, sol og vind, men vi holder os til den ene forklarende variabe7l i denne omgang.
 
 ### Opgave 1
 - Lav et punktplot af datasættet for de to døgn med 0-24 på x-aksen og forbruget på y-aksen.
@@ -31,7 +31,7 @@ Ideen er, at vi deler datasættet i to dele.
 
 **Træningsdata**: Den del som den kunstige intelligens skal bruge til at opstille modellen.
 
-**Testdata**: Den del som den kunstige intelligens skal bruge til vurdere, hvor god modelen er til at forudsige.
+**Testdata**: Den del som den kunstige intelligens skal bruge til at vurdere, hvor god modelen er til at forudsige.
 
 Vi vil bruge data for den første dag som træningsdata og data fra den anden dag som testdata.
 
@@ -43,7 +43,7 @@ Hvis I er flere, så vælg gerne forskellige grader, så I efterfølgende kan sa
 ### Opgave 4
 Det ses af testdata, at elforbruget på den anden dag kl. 12 er 5256 MWh.
 
-- Benyt den kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
+- Benyt den (meget simple) kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
 bestem modellens afvigelse fra det observerede.
 - Sammenlign resultaterne for forskellige modeller fra opgave 3.
 
@@ -71,7 +71,7 @@ Igen er det vigtigt at huske, at modellen laves vha. træningsdata, men den vurd
 ## Hvad er anderledes end sædvanlige regressionsopgaver?
 
 I sædvanlige regressionsopgaver er modellen vigtig: Der er teoretiske overvejelser bag, hvilken model, der beskriver datasættet: lineær,
-eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig. Den er blot et middel til forudsigelsen af en talværdi.
+eksponentiel, polynomiel m.v. I denne opgave er modellen ikke vigtig. Den er blot et middel til forudsigelsen af en talværdi, så der ligger ingen teoretisk eller kontekstbaseret forklaring bag den valgte model.
 
 Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige regressionsopgaver optræder kun ét datasæt, der svarer til træningsdata.
 
@@ -82,7 +82,6 @@ Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datas�
 ### Opgave 6
 - Anvend de første 20 dage som træningsdata til at opstille en model vha. et 6. grads polynomium.
 - Vurder modellen i forhold til testdata for den sidste dag ved beregning af SSE.
-- Gør det samme for andre grader og vælg den model med mindst SSE som bedst.
 
 Vi har lavet en side, der kan lave disse beregninger. (LINK til side og selve siden mangler). På den er datasættet allerede indlæst og det er forvalgt, at de første 20 dage er træningsdata og den sidste dag er testdata.
 
@@ -97,18 +96,12 @@ Man kan også vælge at lade en større del af data være testdata end blot den 
 
 
 ## Lad os faktisk prøve at forudsige forbruget i morgen
-Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I morgen. Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug "i morgen".
+Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I morgen". Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug "i morgen".
 
 ### Opgave 9
 - Indstil siden til den bedste model du har fundet i opgave 6-8.
 - Se hvordan modellen passer for elforbruget for "i morgen".
 
 
-## Et andet eksempel, hvor x-værdierne er kontinuerte
-Det er lidt specielt med elbrugdata, at x-værdierne er diskrete, og at der er tale om tidsrækkedata.
-Jeg overvejer desuden at have et eksempel, hvor dette ikke er tilfældet, men har ikke fundet på noget endnu.
-
-## knn regression
-Her mangler evt. et afsnit om kNN regression på samme data med tilhørende side til beregning.
 
 
