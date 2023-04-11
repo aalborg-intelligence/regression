@@ -5,11 +5,16 @@ format:
       embed-resources: true
     pdf: default
 ---
+
+## Indledning
+
 Regression er en af de teknikker, der anvendes i kunstig intelligens. Vi ønsker i denne opgave at skabe en meget simpel kunstig intelligens, der kan forudsige strømforbruget i morgen i Danmark.
 
-I [dette datasæt](./ElforbrugDKokt2022.xlsx) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
+I [dette datasæt](./ElforbrugDKmar2023.xlsx) ses strømforbrug per time for to hverdage for hele Danmark på fanen "2 dage". Vi ønsker at bruge datasættet til at forudsige elforbruget dagen efter, så elselskaberne bedre kan planlægge energiproduktionen. 
 
-Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel. Det er, indrømmet, nok en lidt naiv tanke, at elforbruget kan forudsiges alene ud fra én variabel, tid på dagen, der skulle nok flere variable i spil som f.eks. temperatur, nedbør, sol og vind, men vi holder os til den ene forklarende variabe7l i denne omgang.
+Vi har ikke en forventning om, at elforbruget følger en bestemt funktionstype, men forventer, at forbruget kan approksimeres med et polynomium af passende grad, hvor tidspunktet på dagen er den forklarende variabel. 
+
+Det er, indrømmet, nok en lidt naiv tanke, at elforbruget kan forudsiges alene ud fra én variabel, tid på dagen, der skulle nok flere variable i spil som f.eks. temperatur, nedbør, sol og vind, men vi holder os til den ene forklarende variabel her.
 
 ### Opgave 1
 - Lav et punktplot af datasættet for de to døgn med 0-24 på x-aksen og forbruget på y-aksen.
@@ -24,9 +29,9 @@ Da vi ikke kender elforbruget i morgen, kan vi ikke sige, hvilken model der reel
 
 Udfordringen er, at regressionen passer bedre til punkterne, når man bruger en højere grad, men at det ikke nødvendigvis derved kommer til at passe bedre til fremtidens forbrug. En lineær model passer sikkert meget dårligt, men laver heller ikke nogle vilde udsving mellem punkterne, hvor et polynomium af højere grad passer bedre til de kendte punkter, men kan svinge mere mellem punkterne, og dermed risikerer at passe ringere til fremtiden. Så det optimale er nok et polynomium, der rimeligt godt passer til kendte data, men ikke svinger for meget til at kunne passe på fremtidige data. Man taler om, at man ikke må overfitte sine data ved at bruge for høj en grad.
 
-Så vi må gøre noget andet end blot at lave regression på alle de kendte data for at skaffe en brugbar model.
+## Trænings- og testdata
 
-Ideen er, at vi deler datasættet i to dele.
+Så vi må gøre noget andet end blot at lave regression på alle de kendte data for at skaffe en brugbar model. Ideen er, at vi deler datasættet i to dele.
 
 
 **Træningsdata**: Den del som den kunstige intelligens skal bruge til at opstille modellen.
@@ -36,12 +41,12 @@ Ideen er, at vi deler datasættet i to dele.
 Vi vil bruge data for den første dag som træningsdata og data fra den anden dag som testdata.
 
 ### Opgave 3
-- Vælg en grad mellem 3 og 10, og lav polynomiel regression på træningsdata (den første dag). 
+- Vælg en grad mellem 2 og 20, og lav polynomiel regression på træningsdata (den første dag). 
 
 Hvis I er flere, så vælg gerne forskellige grader, så I efterfølgende kan sammenligne resultater. Hvis du er alene eller I ikke er så mange, så gentag opgave 3-5 for flere forskellige grader.
 
 ### Opgave 4
-Det ses af testdata, at elforbruget på den anden dag kl. 12 er 5256 MWh.
+Det ses af testdata, at elforbruget på den anden dag kl. 12 er 4541 MWh.
 
 - Benyt den (meget simple) kunstige intelligens i form af den forskrift for et polynomium, som du fandt i opgave 2, til at forudsige elforbruget og
 bestem modellens afvigelse fra det observerede.
@@ -77,7 +82,7 @@ Desuden opdeles datasættet i træningsdata og testdata. I sædvanlige regressio
 
 
 ## Et større træningsdatasæt
-Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datasættet (LINK til datasæt mangler) ses strømforbrug per time for tre uger for hele Danmark på fanen "21 dage".
+Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datasættet ses strømforbrug per time for tre uger for hele Danmark på fanen "21 dage".
 
 ### Opgave 6
 - Anvend de første 20 dage som træningsdata til at opstille en model vha. et 6. grads polynomium.
@@ -86,7 +91,7 @@ Man kan ofte forbedre forudsigelserne ved at bruge et større datasæt. I datas�
 Vi har lavet en side, der kan lave disse beregninger. (LINK til side og selve siden mangler). På den er datasættet allerede indlæst og det er forvalgt, at de første 20 dage er træningsdata og den sidste dag er testdata.
 
 ### Opgave 7
-- Brug siden til at beregne SSE for alle grader fra 2 til 20.
+- Brug siden eller lav selv beregningerne til at beregne SSE for alle grader fra 2 til 30.
 - Vælg derefter modellen med lavest SSE som bedst.
 
 Man kan også vælge at lade en større del af data være testdata end blot den ene dag.
@@ -96,12 +101,15 @@ Man kan også vælge at lade en større del af data være testdata end blot den 
 
 
 ## Lad os faktisk prøve at forudsige forbruget i morgen
-Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I morgen". Vi har lavet en side (LINK og side mangler), hvor du kan sammenligne din model med det faktiske forbrug "i morgen".
+Måske du allerede har bemærket, at den tredje fane i filen med data hedder "I morgen". På siden kan du sammenligne din model med det faktiske forbrug "i morgen".
 
 ### Opgave 9
-- Indstil siden til den bedste model du har fundet i opgave 6-8.
-- Se hvordan modellen passer for elforbruget for "i morgen".
+- Se hvordan din model passer med forbruget i morgen, enten på siden eller ved selv at lave et plot af modellen sammen med punkterne for forbruget i morgen.
 
+![Forudsiglese af forbruget i morgen](./forudsigelse.jpg)
 
+Med dette er du kommet gennem principperne for at lave en simpel kunstig intelligens vha. polynomiel regression. De vigtigste principper handler om opdeling i trænings- og testdata, og i udfordringen med ikke at overfitte til træningsdata.
 
+I eksemplet er der blot den éne forklarende variabel, som vi typisk arbejder med på gymnasieniveau, men sådanne modeller vil ofte i praksis indeholde flere forklarende variable, hvis de skal være mere præcise. Så de modeller, som eksperterne arbeder med for elforbrug og elpris er helt sikkert både mere komplicerede og mere præcise, end den simple tilgang, som vi har anvendt her.
 
+Desuden er data i eksemplet med diskrete x-værdier (0, 1, 2 ... 23), hvor der er andre sammenhænge kan være kontinuerte data, som giver endnu større risiko for at overfitte, hvis polynomiets grad bliver for stor.
